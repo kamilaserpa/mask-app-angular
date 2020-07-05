@@ -43,17 +43,17 @@ Utiliza [PhonePipe](src/app/shared/phone-pipe/phone.pipe.ts) e diretiva [OnlyNum
  - Remove caracteres não numéricos ao colar valor (Ctrl + V)
  - But: não implementa máscara ao colar valor (Ctrl + V) idêntico aos dígitos numéricos já presentes no campo
 
-### [PhoneMask()](https://gitlab.com/angular-kamila/mask-app/-/blob/master/src/app/form/form.component.ts#L83)
+### [PhoneMask()](https://github.com/kamilaserpa/mask-app-angular/blob/dc67b5a33308cf4fd78f3429d5eedb0257ae1322/src/app/form/form.component.ts#L83)
 
 #### Telefone 5 (*)
-Utiliza a function [phoneMask($event)](https://gitlab.com/angular-kamila/mask-app/-/blob/master/src/app/form/form.component.ts#L83) no evento _keyup_ e diretiva OnlyNumbers.
+Utiliza a function [phoneMask($event)](https://github.com/kamilaserpa/mask-app-angular/blob/dc67b5a33308cf4fd78f3429d5eedb0257ae1322/src/app/form/form.component.ts#L83) no evento _keyup_ e diretiva OnlyNumbers.
 - Implementa máscara (xx) xxxxx-xxxx
 - Implementa máscara ao colar valor (Ctrl + V)
 - Remove caracteres não numéricos ao colar valor (Ctrl + V) (reflete na variável associada pelo ngModel)
 - Bloqueia digitação de caracteres não numéricos
 
 #### Telefone 6
-Utiliza a function [phoneMask($event)](https://gitlab.com/angular-kamila/mask-app/-/blob/master/src/app/form/form.component.ts#L83) no evento _keyup_. O listenner do event _keyup_ foi adicionado pois assim é possível inserir a máscara ao colar valor (Ctrl + V), o que não é possível com _keypress_.
+Utiliza a function [phoneMask($event)](https://github.com/kamilaserpa/mask-app-angular/blob/dc67b5a33308cf4fd78f3429d5eedb0257ae1322/src/app/form/form.component.ts#L83) no evento _keyup_. O listenner do event _keyup_ foi adicionado pois assim é possível inserir a máscara ao colar valor (Ctrl + V), o que não é possível com _keypress_.
 - Implementa máscara (xx) #xxxx-xxxx
 - Implementa máscara ao colar valor (Ctrl + V)
 - Não exibe caracteres não numéricos ao colar valor (Ctrl + V)
@@ -61,7 +61,7 @@ Utiliza a function [phoneMask($event)](https://gitlab.com/angular-kamila/mask-ap
 - But: atribui à variável javascript, associada pelo ngModel, caracteres não numéricos ao copiar valor, embora não sejam exibidos ao usuário.
 
 #### Telefone 7
-Utiliza a function [phoneMask($event)](https://gitlab.com/angular-kamila/mask-app/-/blob/master/src/app/form/form.component.ts#L83) no evento _keyup_ e function [onlyNumbers()](https://gitlab.com/angular-kamila/mask-app/-/blob/master/src/app/form/form.component.ts#L74) no evento _keypress_.
+Utiliza a function [phoneMask($event)](https://github.com/kamilaserpa/mask-app-angular/blob/dc67b5a33308cf4fd78f3429d5eedb0257ae1322/src/app/form/form.component.ts#L83) no evento _keyup_ e function [onlyNumbers()](https://gitlab.com/angular-kamila/mask-app/-/blob/master/src/app/form/form.component.ts#L74) no evento _keypress_.
  - Implementa máscara (xx) #xxxx-xxxx
  - Implementa máscara ao colar valor (Ctrl + V)
  - Não exibe caracteres não numéricos ao colar valor (Ctrl + V)
@@ -69,7 +69,7 @@ Utiliza a function [phoneMask($event)](https://gitlab.com/angular-kamila/mask-ap
  - But: atribui à variável javascript, associada pelo ngModel, caracteres não numéricos ao copiar valor, embora não sejam exibidos ao usuário.
 
 #### Telefone 8 (*)
-Utiliza a function [phoneMask($event)](https://gitlab.com/angular-kamila/mask-app/-/blob/master/src/app/form/form.component.ts#L83) no evento _keyup_ e diretiva [OnlyNumbersDirective](src/app/shared/only-numbers/only-numbers.directive.ts)
+Utiliza a function [phoneMask($event)](https://github.com/kamilaserpa/mask-app-angular/blob/dc67b5a33308cf4fd78f3429d5eedb0257ae1322/src/app/form/form.component.ts#L83) no evento _keyup_ e diretiva [OnlyNumbersDirective](src/app/shared/only-numbers/only-numbers.directive.ts)
 - Implementa máscara (xx) #xxxx-xxxx 
 - Implementa máscara ao colar valor (Ctrl + V)
 - Remove caracteres não numéricos ao colar valor (Ctrl + V) (reflete na variável associada pelo ngModel)
@@ -98,13 +98,6 @@ Utiliza o [NumberMaskPipe](src/app/shared/number-mask-pipe) e diretiva [OnlyNumb
  https://developer.mozilla.org/pt-BR/docs/Web/API/Document/_keyup__event
  - Expressões Regulares https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
  - Pipes https://angular.io/guide/pipes
-
-## Firebase
-
-`npm install -g firebase-tools` <br>
-``firebase login` <br>
-`firebase init`<br>
-`firebase deploy`
 
 ### Angular
 
