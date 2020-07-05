@@ -1,0 +1,7 @@
+.p-01 {
+    padding: 0 1rem;
+}
+input.ng-invalid.ng-touched , input.ng-invalid.ng-dirty { 
+    border: 1px solid #dc3545;
+    box-shadow: inset 0 0 2px 0 #dc3545
+}

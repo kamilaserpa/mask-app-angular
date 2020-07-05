@@ -1,0 +1,330 @@
+<div class="row p-01">
+    <div class="col-12 card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Exemplos de input fields usando custom PhonePipe</h5>
+
+            <div class="row">
+
+                <!-- TELEFONE 1 -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label for="phone1">Telefone 1</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            [ngModel]="phone1 | phone"
+                            (ngModelChange)="phone1=$event" name="phone1"
+                            placeholder="+xx (xx) #xxxx-xxxx"
+                            maxlength="19">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="showValue(phone1)">Valor</button>
+                        </div>
+                    </div>
+                    <small id="phone1Info" class="form-text text-muted">Máscara inserida com PhonePipe (código do país,
+                        código de área, 9º dígito opcional)
+                    </small>
+                </div>
+
+                <!-- TELEFONE 2 -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label for="phone2">Telefone 2</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            [ngModel]="phone2 | phone"
+                            (ngModelChange)="phone2=$event" name="phone2"
+                            placeholder="(xx) #xxxx-xxxx" maxlength="15">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="showValue(phone2)">Valor</button>
+                        </div>
+                    </div>
+                    <small id="phone2Info" class="form-text text-muted">Máscara inserida com PhonePipe (código de área,
+                        9º dígito opcional)</small>
+                </div>
+
+                <!-- TELEFONE 3 -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label for="phone3">Telefone 3</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            [ngModel]="phone3 | phone"
+                            (ngModelChange)="phone3=$event"
+                            (keypress)="onlyNumbers($event)" name="phone3"
+                            placeholder="try" maxlength="19">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="showValue(phone3)">Valor</button>
+                        </div>
+                    </div>
+                    <small id="phone3Info" class="form-text text-muted">
+                        PhonePipe e bloqueio somente números com (keypress)="onlyNumbers($event)"
+                    </small>
+                </div>
+
+                <!-- TELEFONE 4 -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label for="phone4">Telefone 4 *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            [ngModel]="phone4 | phone"
+                            (ngModelChange)="phone4=($event)"
+                            appOnlyNumbers name="phone4"
+                            placeholder="try" maxlength="19">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="showValue(phone4)">Valor</button>
+                        </div>
+                    </div>
+                    <small id="phone4Info" class="form-text text-muted">
+                        PhonePipe e bloqueio somente números com diretiva OnlyNumbers
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-12 card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Exemplos de input fields usando function phoneMask()</h5>
+
+            <div class="row">
+
+                <!-- TELEFONE REACTIVE FORM -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <form [formGroup]="maskForm">
+                        <label for="phone">Telefone 5 (reactive form) *</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                                formControlName="phone" name="phone"
+                                placeholder="(xx) xxxxx-xxxx" maxlength="15" 
+                                (keyup)="phoneMask($event)" appOnlyNumbers>
+
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button"
+                                    (click)="showValue(maskForm.controls['phone'].value)">Valor</button>
+                            </div>
+                        </div>
+                        <small id="phone1Info" class="form-text text-muted">
+                            Máscara inserida com function (keyup)="phoneMask($event)" e diretiva OnlyNumbers em input de formulário reativo
+                        </small>
+                    </form>
+                </div>
+
+                <!-- TELEFONE 6 -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label for="phone7">Telefone 6</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            [(ngModel)]="phone6" (keyup)="phoneMask($event)"
+                            name="phone6" placeholder="(xx) #xxxx-xxxx" maxlength="15">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="showValue(phone6)">Valor</button>
+                        </div>
+                    </div>
+                    <small id="phone6Info" class="form-text text-muted">
+                        Máscara inserida com (keyup)="phoneMask($event)"
+                    </small>
+                </div>
+
+                <!-- TELEFONE 7 -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label for="phone5">Telefone 7</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            [(ngModel)]="phone7" (keyup)="phoneMask($event);"
+                            (keypress)="onlyNumbers($event)" name="phone7"
+                            placeholder="(xx) #xxxx-xxxx" maxlength="15">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="showValue(phone7)">Valor</button>
+                        </div>
+                    </div>
+                    <small id="phone7Info" class="form-text text-muted">
+                        Máscara inserida com (keyup)="phoneMask($event)" e (keypress)="onlyNumbers($event)"
+                    </small>
+                </div>
+                <!-- TELEFONE 8 -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label for="phone8">Telefone 8 *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            [(ngModel)]="phone8" (keyup)="phoneMask($event)"
+                            appOnlyNumbers name="phone8"
+                            placeholder="(xx) #xxxx-xxxx" maxlength="15">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="showValue(phone8)">Valor</button>
+                        </div>
+                    </div>
+                    <small id="phone8Info" class="form-text text-muted">
+                        Máscara inserida com (keyup)="phoneMask($event)" e diretiva
+                        appOnlyNumbers
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Exemplos de input fields usando custom NumberMaskPipe</h5>
+
+            <div class="row">
+
+                <!-- CPF -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label for="cpf">CPF</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            [ngModel]="cpf | numberMask: 'cpf'"
+                            (ngModelChange)="cpf=$event"
+                            appOnlyNumbers name="cpf"
+                            placeholder="xxx.xxx.xxx-xx" maxlength="14">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="showValue(cpf)">Valor</button>
+                        </div>
+                    </div>
+                    <small id="cpfInfo" class="form-text text-muted">Máscara inserida com NumberMaskPipe e diretiva OnlyNumbers
+                    </small>
+                </div>
+
+                <!-- CEP -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label for="cep">CEP</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            [ngModel]="cep | numberMask: 'cep'"
+                            (ngModelChange)="cep=$event"
+                            appOnlyNumbers name="cep"
+                            placeholder="xxxxx-xx" maxlength="9">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="showValue(cep)">Valor</button>
+                        </div>
+                    </div>
+                    <small id="cepInfo" class="form-text text-muted">Máscara inserida com NumberMaskPipe e diretiva OnlyNumbers
+                    </small>
+                </div>
+
+                <!-- TELEFONE 9 -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <label for="phone9">Telefone 9 *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            [ngModel]="phone9 | numberMask: 'phone'"
+                            (ngModelChange)="phone9=$event"
+                            appOnlyNumbers name="phone9"
+                            placeholder="+xx (xx) #xxxx-xxxx"
+                            maxlength="19">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="showValue(phone9)">Valor</button>
+                        </div>
+                    </div>
+                    <small id="phone9Info" class="form-text text-muted">Máscara inserida com NumberMaskPipe (código do país,
+                        código de área, 9º dígito opcional) e diretiva OnlyNumbers
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TABLE TELEFONE -->
+    <div class="col-lg-4 card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Telefone/Celular</h5>
+            <small class="form-text text-muted">Custom PhonePipe</small>
+            <table class="table table-striped table-hover table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Com Pipe
+                        </th>
+                        <th>Sem pipe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of phoneNumbers">
+                        <td>{{ p | phone }}</td>
+                        <td>{{ p }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- TABLE CPF -->
+    <div class="col-lg-4 card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">CPF</h5>
+            <small class="form-text text-muted">Custom NumberMaskPipe: CPF</small>
+            <table class="table table-striped table-hover table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Com Pipe
+                        </th>
+                        <th>Sem pipe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of cpfNumbers">
+                        <td>{{ c | numberMask: 'cpf' }}</td>
+                        <td>{{ c }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- TABLE CEP -->
+    <div class="col-lg-4 card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">CEP</h5>
+            <small class="form-text text-muted">Custom NumberMaskPipe: CEP</small>
+            <table class="table table-striped table-hover table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Com Pipe
+                        </th>
+                        <th>Sem pipe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of cepNumbers">
+                        <td>{{ c | numberMask: 'cep' }}</td>
+                        <td>{{ c }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- TABLE TELEFONE -->
+    <div class="col-lg-4 card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Telefone/Celular</h5>
+            <small class="form-text text-muted">Custom NumberMaskPipe</small>
+            <table class="table table-striped table-hover table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Com Pipe
+                        </th>
+                        <th>Sem pipe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of phoneNumbers">
+                        <td>{{ p | numberMask: 'phone'}}</td>
+                        <td>{{ p }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
