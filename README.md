@@ -16,6 +16,10 @@ Demonstração em https://maskappangular.web.app/.
 Considerações sobre os campos de input. Os assinalados com (*) apresentaram melhor comportamento para input de numeros telefônicos.
 
 ### [PhonePipe](src/app/shared/phone-pipe)
+Pipe para números telefônicos com código de área e nono dígito opcional.
+Aplicação:
+
+`{{ '1234567890' | phone }}`
 
 #### Telefone 1
 Utiliza [PhonePipe](src/app/shared/phone-pipe/phone.pipe.ts)
@@ -28,20 +32,20 @@ Utiliza [PhonePipe](src/app/shared/phone-pipe/phone.pipe.ts) limitando a digita�
  - Implementa máscaras (xx) #xxxx - xxxx.
  - But: Aceita caracteres não numéricos.
 
-#### Telefone 3
+#### Telefone 3 (*)
 Utiliza [PhonePipe](src/app/shared/phone-pipe/phone.pipe.ts) e function [onlyNumbers()](https://gitlab.com/angular-kamila/mask-app/-/blob/master/src/app/form/form.component.ts#L74)
  - Implementa máscaras (xx) #xxxx-xxxx, (xx) #xxxx - xxxx, +xx (xx) #xxxx - xxxx, de acordo com o número de caracteres digitados
  - O número de caracteres pode ser limitado pelo atributo maxlength no html
  - Bloqueia digitação de caracteres não numéricos
- - But: aceita caracteres não numéricos ao colar e arrastar valor (Ctrl + V)
+ - Remove caracteres não numéricos ao colar e arrastar valor (Ctrl + V)
 
 #### Telefone 4 (*)
 Utiliza [PhonePipe](src/app/shared/phone-pipe/phone.pipe.ts) e diretiva [OnlyNumbersDirective](src/app/shared/only-numbers/only-numbers.directive.ts)
  - Implementa máscaras (xx) #xxxx-xxxx, (xx) #xxxx - xxxx, +xx (xx) #xxxx - xxxx, de acordo com o número de caracteres digitados
  - O número de caracteres pode ser limitado pelo atributo maxlength no html
  - Bloqueia digitação de caracteres não numéricos
- - Remove caracteres não numéricos ao colar valor (Ctrl + V)
- - But: não implementa máscara ao colar valor (Ctrl + V) idêntico aos dígitos numéricos já presentes no campo
+ - Remove caracteres não numéricos ao colar e arrastar valor (Ctrl + V)
+ - But: não implementa máscara ao colar valor (Ctrl + V) igual ao que já está inserido
 
 ### [PhoneMask()](https://github.com/kamilaserpa/mask-app-angular/blob/dc67b5a33308cf4fd78f3429d5eedb0257ae1322/src/app/form/form.component.ts#L83)
 
@@ -49,7 +53,7 @@ Utiliza [PhonePipe](src/app/shared/phone-pipe/phone.pipe.ts) e diretiva [OnlyNum
 Utiliza a function [phoneMask($event)](https://github.com/kamilaserpa/mask-app-angular/blob/dc67b5a33308cf4fd78f3429d5eedb0257ae1322/src/app/form/form.component.ts#L83) no evento _keyup_ e diretiva OnlyNumbers.
 - Implementa máscara (xx) xxxxx-xxxx
 - Implementa máscara ao colar valor (Ctrl + V)
-- Remove caracteres não numéricos ao colar valor (Ctrl + V) (reflete na variável associada pelo ngModel)
+- Remove caracteres não numéricos ao colar e arrastar valor (Ctrl + V)
 - Bloqueia digitação de caracteres não numéricos
 
 #### Telefone 6
@@ -79,9 +83,9 @@ Utiliza a function [phoneMask($event)](https://github.com/kamilaserpa/mask-app-a
 Pipe para números telefônicos com código de área e nono dígito opcional, cep e cpf.
 Aplicação:
 
-`{{ number | numberMask: 'phone'}}`<br>
-`{{ number | numberMask: 'cep'}}` <br>
-`{{ number | numberMask: 'cpf'}}`
+`{{ '1234567890' | numberMask: 'phone'}}`<br>
+`{{ '12345678' | numberMask: 'cep'}}` <br>
+`{{ '12345678901' | numberMask: 'cpf'}}`
 
 #### Telefone 9 (*)
 Utiliza o [NumberMaskPipe](src/app/shared/number-mask-pipe) e diretiva [OnlyNumbersDirective](src/app/shared/only-numbers/only-numbers.directive.ts)

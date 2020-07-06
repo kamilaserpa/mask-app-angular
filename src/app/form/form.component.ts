@@ -65,10 +65,9 @@ export class FormComponent implements OnInit {
   }
 
   showValue(field) {
-    if (field) {
-      const withoutMask = field.replace(/\D+/g, '');
-      alert('Valor do campo: ' + field + '. Apenas números: ' + withoutMask);
-    }
+    let withoutMask = '';
+    if (field) { withoutMask = field.replace(/\D+/g, '') };
+    alert('Valor da variável: "' + field + '". Apenas números: "' + withoutMask + '"');
   }
 
   onlyNumbers(event): boolean {
@@ -111,6 +110,10 @@ export class FormComponent implements OnInit {
    if (value.length === 9 || value.length === 4 || value.length === 3) {
     return true;
    }
+  }
+
+  getValue(event) {
+    return event.replace(/\D/g, '');
   }
 
 }
