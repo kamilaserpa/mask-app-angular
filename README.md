@@ -5,10 +5,13 @@ Projeto para experimentação e demostração de pipes, diretivas e funções au
 Projeto gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 9.0.3.
 
  > Desenvolvedora: [Kamila Serpa](https://kamilaserpa.github.io)
+ 
+ > Live [Demo](https://maskappangular.web.app/)
+
+<img src="src/assets/input.gif">
 
 ## Pipes
 Imagem dos pipes em funcionamento no projeto.
-Demonstração em https://maskappangular.web.app/.
 
 <img src="src/assets/print_pipes.png" alt="Print dos pipes">
 
@@ -45,6 +48,7 @@ Utiliza [PhonePipe](src/app/shared/phone-pipe/phone.pipe.ts) e diretiva [OnlyNum
  - O número de caracteres pode ser limitado pelo atributo maxlength no html
  - Bloqueia digitação de caracteres não numéricos
  - Remove caracteres não numéricos ao colar e arrastar valor (Ctrl + V)
+ - Funciona em smartphones
  - But: não implementa máscara ao colar valor (Ctrl + V) igual ao que já está inserido
 
 ### [PhoneMask()](https://github.com/kamilaserpa/mask-app-angular/blob/dc67b5a33308cf4fd78f3429d5eedb0257ae1322/src/app/form/form.component.ts#L83)
@@ -93,6 +97,7 @@ Utiliza o [NumberMaskPipe](src/app/shared/number-mask-pipe) e diretiva [OnlyNumb
 - Implementa máscara ao colar valor (Ctrl + V)
 - Remove caracteres não numéricos ao colar valor (Ctrl + V) (reflete na variável associada pelo ngModel)
 - Bloqueia digitação de caracteres não numéricos
+- Funciona em smartphones
 
 ## Links
 

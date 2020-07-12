@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 export class OnlyNumbersDirective {
 
-  private navigationKeys = [
+  private specialKeys = [
     'Backspace', 'Delete', 'Tab', 'Enter', 'Escape', 'Home',
     'End', 'ArrowLeft', 'ArrowRight', 'Clear', 'Copy', 'Paste'
   ];
@@ -19,7 +19,7 @@ export class OnlyNumbersDirective {
   @HostListener('keydown', ['$event'])
   onKeyDown(e: KeyboardEvent) {
     if (
-      this.navigationKeys.indexOf(e.key) > -1 || // Permite: navigation keys: backspace, delete, arrows etc.
+      this.specialKeys.indexOf(e.key) > -1 || // Permite specialKeys: backspace, delete, arrows etc.
       (e.key === 'a' && e.ctrlKey === true) || // Permite: Ctrl+A
       (e.key === 'c' && e.ctrlKey === true) || // Permite: Ctrl+C
       (e.key === 'v' && e.ctrlKey === true) || // Permite: Ctrl+V
@@ -50,8 +50,8 @@ export class OnlyNumbersDirective {
   onKeyPress(e: KeyboardEvent) {
     // Bloqueia caracteres como: !@#$%¨&*()/
     const charCode = (e.which) ? e.which : e.keyCode;
-    if (e.keyCode > 31 && (e.keyCode < 48 || e.keyCode > 57)) {
-      // Cancela o pressionamento da tecla
+    if ((e.shiftKey || (charCode < 48 || charCode > 57)) && (charCode < 96 || charCode > 105)) {
+    // Cancela o pressionamento da tecla
       e.preventDefault();
     }
   }
