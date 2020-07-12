@@ -5,19 +5,9 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 export class OnlyNumbersDirective {
 
-  private navigationKeys = [
-    'Backspace',
-    'Delete',
-    'Tab',
-    'Enter',
-    'Escape',
-    'Home',
-    'End',
-    'ArrowLeft',
-    'ArrowRight',
-    'Clear',
-    'Copy',
-    'Paste'
+  private specialKeys = [
+    'Backspace', 'Delete', 'Tab', 'Enter', 'Escape', 'Home',
+    'End', 'ArrowLeft', 'ArrowRight', 'Clear', 'Copy', 'Paste'
   ];
   inputElement: HTMLElement;
 
@@ -25,10 +15,11 @@ export class OnlyNumbersDirective {
     this.inputElement = el.nativeElement;
   }
 
+  // Ao pressionar teclas que produzem ou não produzem um caractere
   @HostListener('keydown', ['$event'])
   onKeyDown(e: KeyboardEvent) {
     if (
-      this.navigationKeys.indexOf(e.key) > -1 || // Permite: navigation keys: backspace, delete, arrows etc.
+      this.specialKeys.indexOf(e.key) > -1 || // Permite specialKeys: backspace, delete, arrows etc.
       (e.key === 'a' && e.ctrlKey === true) || // Permite: Ctrl+A
       (e.key === 'c' && e.ctrlKey === true) || // Permite: Ctrl+C
       (e.key === 'v' && e.ctrlKey === true) || // Permite: Ctrl+V
@@ -44,8 +35,8 @@ export class OnlyNumbersDirective {
 
     /**
      * Verificando se a tecla não é um número
-     * (e.keyCode < 48 || e.keyCode > 57) -> Não são números da parte superior do teclado
-     * (e.keyCode < 96 || e.keyCode > 105) -> Não são números do teclado numérico
+     * (e.keyCode < 48 || e.keyCode > 57) -> Não é um número da parte superior do teclado
+     * (e.keyCode < 96 || e.keyCode > 105) -> Não é um número do teclado numérico
      */
     if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
       // Cancela o pressionamento da tecla
@@ -54,12 +45,13 @@ export class OnlyNumbersDirective {
 
   }
 
+  // Ao pressionar teclas que produzem um caractere
   @HostListener('keypress', ['$event'])
   onKeyPress(e: KeyboardEvent) {
     // Bloqueia caracteres como: !@#$%¨&*()/
     const charCode = (e.which) ? e.which : e.keyCode;
-    if (e.keyCode > 31 && (e.keyCode < 48 || e.keyCode > 57)) {
-      // Cancela o pressionamento da tecla
+    if ((e.shiftKey || (charCode < 48 || charCode > 57)) && (charCode < 96 || charCode > 105)) {
+    // Cancela o pressionamento da tecla
       e.preventDefault();
     }
   }

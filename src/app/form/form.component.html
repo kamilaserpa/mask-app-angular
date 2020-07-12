@@ -43,13 +43,13 @@
 
                 <!-- TELEFONE 3 -->
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                    <label for="phone3">Telefone 3</label>
+                    <label for="phone3">Telefone 3 *</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                             [ngModel]="phone3 | phone"
-                            (ngModelChange)="phone3=$event"
+                            (ngModelChange)="phone3=getValue($event)"
                             (keypress)="onlyNumbers($event)" name="phone3"
-                            placeholder="try" maxlength="19">
+                            placeholder="+xx (xx) #xxxx-xxxx" maxlength="19">
 
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button" (click)="showValue(phone3)">Valor</button>
@@ -64,11 +64,12 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                     <label for="phone4">Telefone 4 *</label>
                     <div class="input-group">
-                        <input type="text" class="form-control"
+                        <input type="tel" class="form-control"
                             [ngModel]="phone4 | phone"
-                            (ngModelChange)="phone4=($event)"
+                            (ngModelChange)="phone4=$event"
                             appOnlyNumbers name="phone4"
-                            placeholder="try" maxlength="19">
+                            placeholder="+xx (xx) #xxxx-xxxx"
+                            maxlength="19">
 
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button" (click)="showValue(phone4)">Valor</button>
@@ -133,9 +134,11 @@
                     <label for="phone5">Telefone 7</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
-                            [(ngModel)]="phone7" (keyup)="phoneMask($event);"
-                            (keypress)="onlyNumbers($event)" name="phone7"
-                            placeholder="(xx) #xxxx-xxxx" maxlength="15">
+                            [(ngModel)]="phone7" name="phone7"
+                            (keyup)="phoneMask($event)"
+                            (keypress)="onlyNumbers($event)" 
+                            placeholder="(xx) #xxxx-xxxx"
+                            maxlength="15">
 
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button" (click)="showValue(phone7)">Valor</button>
@@ -145,13 +148,15 @@
                         Máscara inserida com (keyup)="phoneMask($event)" e (keypress)="onlyNumbers($event)"
                     </small>
                 </div>
+
                 <!-- TELEFONE 8 -->
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                     <label for="phone8">Telefone 8 *</label>
                     <div class="input-group">
-                        <input type="text" class="form-control"
-                            [(ngModel)]="phone8" (keyup)="phoneMask($event)"
-                            appOnlyNumbers name="phone8"
+                        <input type="tel" class="form-control"
+                            [(ngModel)]="phone8" name="phone8"
+                            (keyup)="phoneMask($event)"
+                            appOnlyNumbers 
                             placeholder="(xx) #xxxx-xxxx" maxlength="15">
 
                         <div class="input-group-append">
@@ -177,7 +182,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                     <label for="cpf">CPF</label>
                     <div class="input-group">
-                        <input type="text" class="form-control"
+                        <input type="tel" class="form-control"
                             [ngModel]="cpf | numberMask: 'cpf'"
                             (ngModelChange)="cpf=$event"
                             appOnlyNumbers name="cpf"
@@ -195,7 +200,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                     <label for="cep">CEP</label>
                     <div class="input-group">
-                        <input type="text" class="form-control"
+                        <input type="tel" class="form-control"
                             [ngModel]="cep | numberMask: 'cep'"
                             (ngModelChange)="cep=$event"
                             appOnlyNumbers name="cep"
@@ -213,7 +218,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                     <label for="phone9">Telefone 9 *</label>
                     <div class="input-group">
-                        <input type="text" class="form-control"
+                        <input type="tel" class="form-control"
                             [ngModel]="phone9 | numberMask: 'phone'"
                             (ngModelChange)="phone9=$event"
                             appOnlyNumbers name="phone9"

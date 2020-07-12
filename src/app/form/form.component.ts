@@ -44,7 +44,7 @@ export class FormComponent implements OnInit {
       '(85)33224455',
       '853322-4455',
       '85988776655',
-      '5585988776655',
+      '558588776655',
       '+55859 88776655',
       '+55(85)98877-6655',
       '+5585988776655',
@@ -65,10 +65,9 @@ export class FormComponent implements OnInit {
   }
 
   showValue(field) {
-    if (field) {
-      const withoutMask = field.replace(/\D+/g, '');
-      alert('Valor do campo: ' + field + '. Apenas números: ' + withoutMask);
-    }
+    let withoutMask = '';
+    if (field) { withoutMask = field.replace(/\D+/g, ''); }
+    alert('Valor da variável: "' + field + '". Apenas números: "' + withoutMask + '"');
   }
 
   onlyNumbers(event): boolean {
@@ -100,7 +99,7 @@ export class FormComponent implements OnInit {
       tel = tel.replace(/^(\d{2})?(\d{4})?(\d{0,4}).*/, '($1) $2-$3');
     } else if (tel.length > 1) {
       // #### -> (##) ##
-      tel = tel.replace(/^(\d{2})?(\d{0,5})/, '($1) $2');
+      tel = tel.replace(/^(\d{2})?(\d{0,5}).*/, '($1) $2');
     } else {
       if (tel !== '') { tel = tel.replace(/^(\d*)/, '($1'); }
     }
@@ -111,6 +110,10 @@ export class FormComponent implements OnInit {
    if (value.length === 9 || value.length === 4 || value.length === 3) {
     return true;
    }
+  }
+
+  getValue(event) {
+    return event.replace(/\D/g, '');
   }
 
 }
